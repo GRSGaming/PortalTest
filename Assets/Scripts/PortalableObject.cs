@@ -18,10 +18,16 @@ public class PortalableObject : MonoBehaviour
     private new Rigidbody rigidbody;
     protected new Collider collider;
 
+    public GameObject owner;
+
     private static readonly Quaternion halfTurn = Quaternion.Euler(0.0f, 180.0f, 0.0f);
 
     protected virtual void Awake()
     {
+        if (!owner)
+        {
+            owner = this.gameObject;
+        }
         cloneObject = new GameObject();
         cloneObject.SetActive(false);
         var meshFilter = cloneObject.AddComponent<MeshFilter>();
@@ -81,14 +87,14 @@ public class PortalableObject : MonoBehaviour
         var outTransform = outPortal.transform;
 
         // Update position of object.
-        Vector3 relativePos = inTransform.InverseTransformPoint(transform.position);
+        Vector3 relativePos = inTransform.InverseTransformPoint(owner.transform.position);
         relativePos = halfTurn * relativePos;
-        transform.position = outTransform.TransformPoint(relativePos);
+        owner.transform.position = outTransform.TransformPoint(relativePos);
 
         // Update rotation of object.
-        Quaternion relativeRot = Quaternion.Inverse(inTransform.rotation) * transform.rotation;
+        Quaternion relativeRot = Quaternion.Inverse(inTransform.rotation) * owner.transform.rotation;
         relativeRot = halfTurn * relativeRot;
-        transform.rotation = outTransform.rotation * relativeRot;
+        owner.transform.rotation = outTransform.rotation * relativeRot;
 
         // Update velocity of rigidbody.
         Vector3 relativeVel = inTransform.InverseTransformDirection(rigidbody.velocity);
