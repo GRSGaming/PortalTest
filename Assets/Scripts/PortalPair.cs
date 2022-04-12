@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PortalPair : MonoBehaviour
 {
-    public Portal[] Portals { private set; get; }
+    /*public Portal[] Portals { private set; get; }
 
     private void Awake()
     {
@@ -14,5 +14,7 @@ public class PortalPair : MonoBehaviour
         {
             Debug.LogError("PortalPair children must contain exactly two Portal components in total.");
         }
-    }
+    }*/
+
+    public Portal[] Portals;
 }

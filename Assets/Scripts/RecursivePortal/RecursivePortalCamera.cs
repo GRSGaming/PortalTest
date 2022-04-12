@@ -13,13 +13,13 @@ public class RecursivePortalCamera : MonoBehaviour
     private RenderTexture tempTexture1;
     private RenderTexture tempTexture2;
 
-    private Camera mainCamera;
+    public Camera mainCamera;
 
     private const int iterations = 7;
 
     private void Awake()
     {
-        mainCamera = GetComponent<Camera>();
+        //mainCamera = GetComponent<Camera>();
 
         tempTexture1 = new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.ARGB32);
         tempTexture2 = new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.ARGB32);

@@ -66,7 +66,15 @@ public class Portal : MonoBehaviour
     public void SetColour(Color colour)
     {
         material.SetColor("_Colour", colour);
-        outlineRenderer.material.SetColor("_OutlineColour", colour);
+        if (outlineRenderer)
+        {
+            outlineRenderer.material.SetColor("_OutlineColour", colour);
+        }
+        else
+        {
+            Debug.Log("No hay outline");
+        }
+        
     }
 
     public void SetMaskID(int id)
